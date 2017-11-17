@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CallLogCollectSystem.iml" filepath="$PROJECT_DIR$/CallLogCollectSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CallLogConsumer/CallLogConsumer.iml" filepath="$PROJECT_DIR$/CallLogConsumer/CallLogConsumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CallLogCoproessor/CallLogCoproessor.iml" filepath="$PROJECT_DIR$/CallLogCoproessor/CallLogCoproessor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CallLogGen/CallLogGen.iml" filepath="$PROJECT_DIR$/CallLogGen/CallLogGen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/WebVisual/WebVisual.iml" filepath="$PROJECT_DIR$/WebVisual/WebVisual.iml" />
+    </modules>
+  </component>
+</project>
