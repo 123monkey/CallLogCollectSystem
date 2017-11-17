@@ -3,7 +3,6 @@ package org.clay.webVisual.util;
 import java.util.Random;
 
 /**
- * Created by Administrator on 2017/4/10.
  */
 public class CharUtil {
     static Random r = new Random();
