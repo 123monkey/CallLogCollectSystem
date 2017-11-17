@@ -10,7 +10,7 @@ Yarn (HA) ,		mini1,mini2,mini3,mini4
 JournalNode		mini2,mini3,mini4
 
 Zookeeper,  		mini1,mini2,mini3
-Hbase,  			mini1,mini2,mini3,mini4	 HA只需要在mini6上用hbase-daemon.sh start master 命令即可
+Hbase,  	        mini1,mini2,mini3,mini4	 HA只需要在mini6上用hbase-daemon.sh start master 命令即可
 
 Flume,  			mini1
 Kafka,  			mini2,mini3,mini4
