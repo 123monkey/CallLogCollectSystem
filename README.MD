@@ -164,7 +164,7 @@ a1.channels = c1
 
 a1.sources.r1.type=exec
 #-F 最后10行,如果从头开始收集 -c +0 -F:持续收集后续数据,否则进程停止。
-a1.sources.r1.command=tail -F -c +0 /home/hadoop/calllog/calllog.log
+a1.sources.r1.command=tail -F -c +0 /home/hadoop/calllog/callLog.log
 
 a1.channels.c1.type=memory
 
