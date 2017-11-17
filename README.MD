@@ -6,7 +6,7 @@
 Hadoop (HA)，----------------------->mini1,mini2,mini3,mini4
 
 Yarn (HA)，----------------------->mini1,mini2,mini3,mini4
- 
+
 JournalNode，----------------------->mini2,mini3,mini4
 
 Zookeeper，----------------------->mini1,mini2,mini3   
@@ -186,6 +186,14 @@ flume-ng agent -f /home/hadoop/soft/flume-1.7.0/conf/calllog.conf -n a1 &
 
 
 
+## 部署WebVisual，打开lcoalhost:8080/callLog/findAll  
+
+> jsp 页面通过ajax请求每隔两秒刷新一次页面
+
+
+
+
+
 ## 启动数据生成程序   生成记录
 
 ~~~
@@ -195,24 +203,26 @@ flume-ng agent -f /home/hadoop/soft/flume-1.7.0/conf/calllog.conf -n a1 &
 
 
 
-##  查看Hbase中的数据
+##  jsp页面实时刷新最新的记录
 
 ~~~
-scan 'ns1:calllogs'
+~
+~
+~
 ~~~
 
 
 
+-----------------------------------------------------------------------------------------------------
 
-
-## 部署WebVisual  程序查看可视化
+## 系统其他功能
 
 1. 根据手机号码和起止时间查询
 ~~~
 localhost:8080/callLog/toFindCallLogPage
 ~~~
 
-2. 查询某个手机号最近的一条记录
+2. 查询某个手机号最新的一条记录
 ~~~
 准备工作：hive通过外部表的方式整合Hbase（防止数据丢失）
 建表语句
