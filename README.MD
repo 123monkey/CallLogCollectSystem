@@ -1,5 +1,5 @@
 ## 项目架构
-![image](https://github.com/clay4444/CallLogCollectSystem/Show/CallLogCollectSystem.png)
+![image](https://github.com/clay4444/CallLogCollectSystem/blob/master/Show/CallLogCollectSystem.png)
 
 ## 模拟集群环境
 
