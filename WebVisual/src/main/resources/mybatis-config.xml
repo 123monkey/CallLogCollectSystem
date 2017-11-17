@@ -4,10 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <typeAliases>
-        <!--<typeAlias type="org.clay.webVisual.domain.Person" alias="_Person"/>-->
+        <typeAlias type="org.clay.webVisual.domain.Person" alias="_Person"/>
     </typeAliases>
     <!-- 引入映射文件 -->
     <mappers>
-        <!--<mapper resource="PersonMapper.xml"/>-->
+        <mapper resource="PersonMapper.xml"/>
     </mappers>
 </configuration>

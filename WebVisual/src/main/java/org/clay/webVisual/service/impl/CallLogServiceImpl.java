@@ -8,9 +8,11 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.clay.webVisual.domain.CallLog;
 import org.clay.webVisual.domain.CallLogRange;
 import org.clay.webVisual.service.CallLogService;
+import org.clay.webVisual.service.PersonService;
 import org.clay.webVisual.util.CallLogUtil;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +22,9 @@ import java.util.List;
  */
 @Service("callLogService")
 public class CallLogServiceImpl implements CallLogService {
+
+    @Resource(name="personService")
+    private PersonService ps ;
 
     private Table table ;
     public CallLogServiceImpl(){
@@ -52,12 +57,21 @@ public class CallLogServiceImpl implements CallLogService {
             while(it.hasNext()){
                 log = new CallLog();
                 Result r = it.next();
-                log.setCaller(Bytes.toString(r.getValue(f, caller)));
-                log.setCallee(Bytes.toString(r.getValue(f, callee)));
+                //TODO 设置用户名
+                String callerStr = Bytes.toString(r.getValue(f, caller)) ;
+                log.setCaller(callerStr);
+                log.setCallerName(ps.selectNameByPhone(callerStr));
+
+                //TODO 设置用户名
+                String calleeStr = Bytes.toString(r.getValue(f, callee)) ;
+                log.setCallee(calleeStr);
+                log.setCalleeName(ps.selectNameByPhone(calleeStr));
+
                 log.setCallTime(Bytes.toString(r.getValue(f, callTime)));
                 log.setCallDuration(Bytes.toString(r.getValue(f, callDuration)));
                 list.add(log);
             }
+
             return list ;
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,10 +108,14 @@ public class CallLogServiceImpl implements CallLogService {
                     String rowkey = Bytes.toString(r.getRow());
                     String flag = rowkey.split(",")[3] ;
                     log.setFlag(flag.equals("0")?true:false);
-                    //caller
-                    log.setCaller(Bytes.toString(r.getValue(f, caller)));
-                    //callee
-                    log.setCallee(Bytes.toString(r.getValue(f, callee)));
+                    //caller+callerName
+                    String callerStr = Bytes.toString(r.getValue(f, caller)) ;
+                    log.setCaller(callerStr);
+                    log.setCallerName(ps.selectNameByPhone(callerStr));
+                    //callee+calleeName
+                    String calleeStr = Bytes.toString(r.getValue(f, callee)) ;
+                    log.setCallee(calleeStr);
+                    log.setCalleeName(ps.selectNameByPhone(calleeStr));
                     //callTime
                     log.setCallTime(Bytes.toString(r.getValue(f, callTime)));
                     //callDuration

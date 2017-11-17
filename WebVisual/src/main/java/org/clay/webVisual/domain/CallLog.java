@@ -1,5 +1,6 @@
 package org.clay.webVisual.domain;
 
+
 import org.clay.webVisual.util.CallLogUtil;
 
 import java.text.SimpleDateFormat;
@@ -9,9 +10,31 @@ import java.text.SimpleDateFormat;
  */
 public class CallLog {
     private String caller ;
+    //主叫名字
+    private String callerName ;
     private String callee ;
+    //被叫名称
+    private String calleeName ;
+
     private String callTime ;
     private String callDuration ;
+
+    public String getCallerName() {
+        return callerName;
+    }
+
+    public void setCallerName(String callerName) {
+        this.callerName = callerName;
+    }
+
+    public String getCalleeName() {
+        return calleeName;
+    }
+
+    public void setCalleeName(String calleeName) {
+        this.calleeName = calleeName;
+    }
+
     //是否是主叫
     private boolean flag ;
 
