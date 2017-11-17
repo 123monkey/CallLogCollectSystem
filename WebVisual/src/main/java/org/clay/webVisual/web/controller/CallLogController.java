@@ -39,6 +39,23 @@ public class CallLogController {
         return "callLog/callLogList" ;
     }
 
+    @RequestMapping("/callLog/json/findAll")
+    public String findAllJson(HttpServletResponse response) {
+        List<CallLog> list = cs.findAll();
+        String json = JSON.toJSONString(list);
+        //内容类型
+        response.setContentType("application/json");
+        try {
+            OutputStream out = response.getOutputStream();
+            out.write(json.getBytes());
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
+
     /**
      * 进入查询通话记录的页面,form
      */

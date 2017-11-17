@@ -4,6 +4,31 @@
 <head>
     <title>通话记录</title>
     <link rel="stylesheet" type="text/css" href="../css/my.css">
+    <script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript">
+
+        //定义函数
+        function refreshTable(){
+            $("#t1 tbody").empty();
+            $.getJSON("/callLog/json/findAll", function (data) {
+                $.each(data, function (i, obj) {
+                    var str = "<tr><td>" + obj.caller + "</td>";
+                    str = str + "<td> " + obj.callerName + "</td>";
+                    str = str + "<td> " + obj.callee + "</td>";
+                    str = str + "<td> " + obj.calleeName + "</td>";
+                    str = str + "<td></td>";
+                    str = str + "<td> " + obj.callTime + "</td>";
+                    str = str + "<td> " + obj.callDuration + "</td>";
+                    str = str + "</tr>";
+                    $("#t1 tbody").append(str);
+                });
+            });
+        }
+        $(function(){
+            setInterval(refreshTable, 2000);
+        })
+    </script>
+
 </head>
 <body>
 <table id="t1" border="1px" class="t-1" style="width: 800px">
