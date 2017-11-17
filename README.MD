@@ -17,7 +17,7 @@ Flume，----------------------->mini1
 
 Kafka，----------------------->mini2,mini3,mini4
 
-Hive，----------------------->~
+Hive，----------------------->mini1
 
 数据模拟程序，----------------------->mini1
 
@@ -207,8 +207,28 @@ scan 'ns1:calllogs'
 
 ## 部署WebVisual  程序查看可视化
 
+1. 根据手机号码和起止时间查询
 ~~~
 localhost:8080/callLog/toFindCallLogPage
 ~~~
 
-根据手机号码和起止时间查询
+2. 查询某个手机号最近的一条记录
+~~~
+准备工作：hive通过外部表的方式整合Hbase（防止数据丢失）
+建表语句
+-----------------------------------------
+$hive>create database mydb ;
+$hive>use mydb ;
+$hive>create external table ext_calllogs_in_hbase(id string, caller string,callTime string,callee string,callDuration string) STORED BY 'org.apache.hadoop.hive.hbase.HBaseStorageHandler' WITH SERDEPROPERTIES ("hbase.columns.mapping" = ":key,f1:caller,f1:callTime,f1:callee,f1:callDuration") TBLPROPERTIES ("hbase.table.name" = "ns1:calllogs");
+
+测试：$hive>select * from ext_calllogs_in_hbase;
+---------------------------------------------
+在mini1上启动hiveserver2  [jdbc协议]
+进程名：RunJar        如果一次失败之后需要杀死重启
+-----------------------------------------------------
+$>hive/bin/hiveserver2 &
+------------------------------------------------
+部署WebVisual
+地址：localhost:8080/callLog/toFindLatestCallLog
+~~~
+
