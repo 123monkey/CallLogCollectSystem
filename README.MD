@@ -1,3 +1,6 @@
+## 项目架构
+![image](https://github.com/clay4444/CallLogCollectSystem/Show/CallLogCollectSystem.png)
+
 ## 模拟集群环境
 
 Hadoop (HA) , 	mini1,mini2,mini3,mini4
