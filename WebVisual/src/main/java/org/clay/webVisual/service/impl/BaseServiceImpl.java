@@ -6,7 +6,6 @@ import org.clay.webVisual.service.BaseService;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/4/7.
  */
 public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
