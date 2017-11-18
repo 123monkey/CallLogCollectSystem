@@ -2,12 +2,15 @@ package org.clay.webVisual.hive;
 
 import org.apache.hadoop.hbase.client.Result;
 import org.clay.webVisual.domain.CallLog;
+import org.clay.webVisual.domain.CallLogStat;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -51,5 +54,32 @@ public class HiveCallLogService {
             e.printStackTrace();
         }
         return null ;
+    }
+
+    /**
+     * 查询指定人员指定年份中各个月份的通话次数
+     */
+    public List<CallLogStat> statCallLogsCount(String caller, String year){
+        List<CallLogStat> list = new ArrayList<CallLogStat>() ;
+        try {
+            Connection conn = DriverManager.getConnection(url);
+            Statement st = conn.createStatement();
+            String sql = "select count(*) ,substr(calltime,1,6) from ext_calllogs_in_hbase " +
+                    "where caller = '" + caller+"' and substr(calltime,1,4) == '" + year
+                    + "' group by substr(calltime,1,6)";
+            ResultSet rs = st.executeQuery(sql);
+            CallLog log = null;
+            while (rs.next()) {
+                CallLogStat logSt = new CallLogStat();
+                logSt.setCount(rs.getInt(1));
+                logSt.setYearMonth(rs.getString(2));
+                list.add(logSt);
+            }
+            rs.close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

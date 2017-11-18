@@ -96,5 +96,33 @@ public class CallLogController {
         return "callLog/findLatestCallLog" ;
     }
 
+    /**
+     * 进入 统计指定年份中各月份通话次数统计 的页面
+     */
+    @RequestMapping("/callLog/toStatCallLog")
+    public String toStatCallLog(){
+        return "callLog/statCallLog" ;
+    }
 
+    /**
+     * 统计指定人员，指定年份中各月份通话次数统计
+     */
+    @RequestMapping("/callLog/statCallLog")
+    public String statCallLog(Model m ,@RequestParam("caller") String caller ,@RequestParam("year") String year){
+        List<CallLogStat> list = hcs.statCallLogsCount(caller, year);
+
+        if(list != null && !list.isEmpty()){
+            List<String> months = new ArrayList<String>();      //月份
+            List<Integer> counts = new ArrayList<Integer>();    //次数
+            for(CallLogStat cls : list){
+                months.add(cls.getYearMonth());
+                counts.add(cls.getCount());
+            }
+
+            m.addAttribute("title", caller + "在" + year + "年各月份通话次数统计");
+            m.addAttribute("list", list);
+        }
+
+        return "callLog/statCallLog" ;
+    }
 }
