@@ -3,6 +3,7 @@ package org.clay.webVisual.web.controller;
 import com.alibaba.fastjson.JSON;
 import org.clay.webVisual.domain.CallLog;
 import org.clay.webVisual.domain.CallLogRange;
+import org.clay.webVisual.domain.CallLogStat;
 import org.clay.webVisual.hive.HiveCallLogService;
 import org.clay.webVisual.service.CallLogService;
 import org.clay.webVisual.util.CallLogUtil;
@@ -16,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -43,11 +45,13 @@ public class CallLogController {
     public String findAllJson(HttpServletResponse response) {
         List<CallLog> list = cs.findAll();
         String json = JSON.toJSONString(list);
-        //内容类型
+        // 通知浏览器接受到数据类型字符集
         response.setContentType("application/json");
+        response.setCharacterEncoding("utf-8");
         try {
             OutputStream out = response.getOutputStream();
-            out.write(json.getBytes());
+            //  json 文件采用的编码
+            out.write(json.getBytes("utf-8"));
             out.flush();
             out.close();
         } catch (IOException e) {
@@ -85,10 +89,12 @@ public class CallLogController {
     }
 
     /**
-     * 查询最近通话记录
+     *  查询最近通话记录  的页面
      */
     @RequestMapping(value = "/callLog/toFindLatestCallLog")
     public String toFindLatestCallLog(){
         return "callLog/findLatestCallLog" ;
     }
+
+
 }
