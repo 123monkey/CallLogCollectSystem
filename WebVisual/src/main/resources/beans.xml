@@ -25,7 +25,7 @@
     </aop:config>
 
     <!-- 扫描包 -->
-    <context:component-scan base-package="org.clay.webVisual.dao,org.clay.webVisual.service,org.clay.webVisual.hive" />
+    <context:component-scan base-package="org.clay.webVisual.dao,org.clay.webVisual.service,org.clay.webVisual.hive,org.clay.webVisual.Monitor" />
 
     <!-- 数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">

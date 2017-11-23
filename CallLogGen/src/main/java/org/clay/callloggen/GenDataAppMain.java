@@ -1,5 +1,7 @@
 package org.clay.callloggen;
 
+import org.clay.callloggen.udp.HeartBeatThread;
+
 import java.io.FileWriter;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -41,6 +43,8 @@ public class GenDataAppMain {
 
     public static void main(String[] args) throws Exception {
         genCallLog();
+        //心跳线程
+        new HeartBeatThread().start();
     }
 
     public static void genCallLog() throws Exception {

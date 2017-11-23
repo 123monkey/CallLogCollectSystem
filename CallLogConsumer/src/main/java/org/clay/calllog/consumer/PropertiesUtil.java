@@ -19,7 +19,16 @@ public class PropertiesUtil {
         }
     }
 
+
     public static String getProp(String key){
         return props.getProperty(key) ;
+    }
+
+    public static String getString(String key){
+        return props.getProperty(key) ;
+    }
+
+    public static int getInt(String key){
+        return Integer.parseInt(props.getProperty(key)) ;
     }
 }

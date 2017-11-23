@@ -4,6 +4,7 @@ import kafka.consumer.Consumer;
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
+import org.clay.calllog.consumer.udp.HeartBeatThread;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.Map;
 public class HbaseConsumer {
 
     public static void main(String[] args) throws Exception {
+
+        new HeartBeatThread().start();
         HbaseDao dao = new HbaseDao();
         //创建配置对象
         ConsumerConfig config = new ConsumerConfig(PropertiesUtil.props);
