@@ -11,6 +11,14 @@ public class CallLogStat {
         return yearMonth;
     }
 
+    public CallLogStat() {
+    }
+
+    public CallLogStat(String yearMonth, int count) {
+        this.yearMonth = yearMonth;
+        this.count = count;
+    }
+
     public void setYearMonth(String yearMonth) {
         this.yearMonth = yearMonth;
     }
